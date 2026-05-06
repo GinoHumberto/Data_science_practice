@@ -1,0 +1,116 @@
+%=============================
+% ENTORNOS PERSONALIZADOS
+
+% Cuadro ejemplo
+\newcounter{example}[section]
+\renewcommand{\theexample}{\thesection.\arabic{example}}
+
+\newtcolorbox{ejemplo}[1][]{
+    enhanced,
+    breakable,
+    colback=gray!12,
+    boxrule=0pt,
+    frame hidden,
+    borderline west={2pt}{0pt}{black},
+    sharp corners,
+    left=8pt,
+    right=8pt,
+    top=6pt,
+    bottom=6pt,
+    fonttitle=\bfseries,
+    title={Ejemplo~\theexample},
+    coltitle=black,
+    code={\refstepcounter{example}},
+    #1
+}
+
+% Notas
+\newtcolorbox{nota}{
+  enhanced,
+  breakable,
+  colback=gray!6,
+  boxrule=0pt,
+  frame hidden,
+  borderline west={3pt}{0pt}{gray!60},
+  sharp corners,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  fontupper=\small
+}
+
+% Ejercicios 
+\newtcolorbox{ejercicio}[1][]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=black!70,      % Color del marco y del título
+  colbacktitle=black!70, % Fondo del título
+  coltitle=white,        % Texto del título en blanco
+  fonttitle=\bfseries\small,
+  title={EJERCICIO #1},   % El título es "EJERCICIO" + lo que tú escribas
+  detach title,
+  % Diseño del encabezado
+  before upper={\textsf{\textbf{\textcolor{black!70}{EJERCICIO #1}}}\smallskip\hrule\medskip\par},
+  boxrule=0pt,
+  frame hidden,
+  borderline north={1.5pt}{0pt}{black!70}, % Línea superior gruesa
+  borderline south={0.5pt}{0pt}{black!20}, % Línea inferior sutil
+  sharp corners,
+  left=0pt,   % Alineado a la izquierda sin sangría
+  right=0pt,
+  top=5pt,
+  bottom=5pt,
+  fontupper=\small
+}
+
+
+% Teorema
+\theoremstyle{definition}
+\newtheorem{theorem}{Teorema}%[section]
+
+
+% ----- CODIGO ----- %
+
+% 1. Definimos los colores para Python
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backgray}{rgb}{0.95,0.95,0.96}
+\definecolor{pyblue}{rgb}{0.1, 0.4, 0.6}
+
+% 2. Creamos el entorno personalizado llamado "pycode"
+\newtcblisting{pycode}[1]{%
+    breakable,
+    enhanced,
+    arc=2pt,
+    outer arc=2pt,
+    boxrule=0.5pt,
+    colback=backgray,
+    colframe=pyblue!70!black,
+    left=5mm,
+    overlay={
+        \begin{tcbclipinterior}
+            \fill[gray!20] (frame.south west) rectangle ([xshift=5mm]frame.north west);
+        \end{tcbclipinterior}
+    },
+    title=#1, % El título que le pases al entorno
+    fonttitle=\bfseries\small\ttfamily,
+    listing only,
+    listing options={
+        language=Python,
+        basicstyle=\small\ttfamily,
+        keywordstyle=\color{blue}\bfseries,
+        stringstyle=\color{codepurple},
+        commentstyle=\color{codegreen}\itshape,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        stepnumber=1,
+        numbersep=8pt,
+        showstringspaces=false,
+        breaklines=true,
+        tabsize=4
+    }
+}
+
+%=============================

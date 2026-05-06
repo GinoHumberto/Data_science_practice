@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{report}
+
+% Set lang (support for xelatex and lualatex)
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{spanish}
+
+% Enhanced font: Computer Modern Unicode
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+
+% Incluye imágenes
+\usepackage{graphicx}
+\usepackage{tcolorbox} % Es para cuadros de colores
+\tcbuselibrary{breakable, skins} % Para poder partir un cuadro
+\usepackage{subcaption}
+
+% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% Math graphic
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{positioning, arrows.meta}
+\pgfplotsset{compat=1.18}
+\usepackage{morefloats}
+
+% Codigo
+\usepackage{listings}
+\tcbuselibrary{listings} % Es lo que permite usar t colorbox dentro de listings
+
+% Graficos de Matplot
+\newcommand{\mathdefault}[1][]{#1}
+
+% Entornos
+\input{entornos.tex}
+
+% Para los input de python:
+\usepackage{booktabs}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+    \vspace*{\fill}
+    {\Huge \ttfamily Analisis de Dataset Titanic \par}
+    \vspace{2cm}
+    {\large \itshape Gino Anci \par}
+    {\small\today\par}
+    \vspace*{\fill}
+\end{titlepage}
+
+\tableofcontents
+
+\include{chapters/1_guia}
+\include{chapters/2_exploracion}
+
+\end{document}

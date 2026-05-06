@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{booktabs} % INDISPENSABLE para tablas de Pandas
+\usepackage{graphicx}
+
+% Graficos de Matplot
+\newcommand{\mathdefault}[1][]{#1}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{positioning, arrows.meta}
+\pgfplotsset{compat=1.18}
+\usepackage{import}
+
+\title{Práctica de Estadística Descriptiva}
+\author{Gino Anci}
+
+\begin{document}
+\maketitle
+
+\section{Tabla de frecuencias}
+A continuación se presentan los estadísticos descriptivos obtenidos de los empleados de una determinada empresa:
+
+\input{tablas/tabla_resumen.tex}
+
+En la tabla \ref{tab:df_tabla_frecuencias}:
+\begin{itemize}
+    \item \texttt{Li}: representa el limite inferior del salario.
+    \item \texttt{Ls}: representa el limite superior del salario.
+    \item \texttt{ni}: representa la cantidad de empleados.
+    \item \texttt{ci}: representa el punto medio de intervalos.
+    \item \texttt{fi}: representa la frecuencia absoluta.
+    \item \texttt{Fi}: representa la frecuencia acumulada.
+    \item \texttt{Ni}: representa la cantidad acumulada de empleados.
+\end{itemize}
+
+\subsection{Medidas de centralización}
+
+Tras procesar los datos de frecuencia, se obtuvieron los siguientes estadísticos:
+\input{tablas/estadisticos.tex}
+
+\begin{itemize}
+    \item \textit{Media aritmética ($\bar{x}$):} \media
+    \item \textit{Varianza ($\sigma^2$):} \varianza
+    \item \textit{Desviación estándar ($\sigma$):} \desviacion
+\end{itemize}
+
+\section{Visualización}
+\begin{figure}[!ht]
+    \caption{Distribucion de salarios en base a cantidad de empleados}
+    \label{fig:hist}
+    \input{graficos/distribucion.pgf}
+\end{figure}
+
+\section{Medidas}
+
+\subsection{Respecto a los impuestos}
+
+Una medida gubernamental determina que a partir del próximo mes se retendrán impuestos a los salarios que superen los \mathdollar{1500} mensuales. 
+
+\emph{¿Qué porcentaje de los empleados se verán afectados por dicha retención?}
+
+\input{tablas/proporcion_a.tex}
+La cantidad de empleados que tendran una retención por impuestos superiores a \mathdollar{1500} es de \(\Proporción = \Porcentaje\%\). Ver figura\ref{fig:torta_impuesto_1500} 
+\begin{figure}[!ht]
+    \label{fig:torta_impuesto_1500}
+    \input{graficos/empleados_respecto_impuesto_1500.pgf}
+\end{figure}
+
+\subsection{Aumento al 12\% de los empleados}
+
+Tras reclamos continuos del personal y ante la imposibilidad de conceder un aumento general, la empresa decidio otorgar un aumento de \mathdollar{120} mensuales a los empleados que menos ganan. 
+La empresa lo va a otorgar al 12\% con menores ingresos \emph{¿Cuánto es el salario máximo para obtener dicho aumento?}
+
+\input{tablas/aumento_salario.tex}
+
+El salario máximo para obtener dicho aumento es {\InterpolacionPdoce}.
+
+\subsubsection{Caso arreglo con sindicato}
+
+Hay una probabilidad que el sindicato negocie con la empresa y consiga que el aumento se otorge a una cuarta parte de los empleados.
+
+\emph{¿Cuánto es el salario máximo en ese caso?}
+
+Se determino que el salario máximo en caso de arreglo con sindicato es \InterpolacionPveinticinco
+
+Ver comparación del 12\% contra el 25\% en \ref{fig:aumentosalarial}
+
+\begin{figure}[!ht]
+    \label{fig:aumentosalarial}
+    \input{graficos/aument_salaral.pgf}
+\end{figure}
+
+Se nos cuestiono:
+
+¿En caso de que se acuerde fijar el aumento en el salario tope de \mathdollar{1000}?
+
+En ese caso abarcaria al \PorcentajeMenorAMil\% de los empleados.
+
+\section{Coeficiente de Asimetria y Curtosis}
+
+\input{tablas/coeficientes.tex}
+Se cuestiono si la distribucion de salarios es simétrica y que tan concentrado y/o dispersos se encuentran los datos (curtosis).
+
+\subsection{Coeficientes de Asimetria}
+
+Los valores obtenidos fueron:
+\begin{itemize}
+    \item Coeficiente de Fisher:
+    \begin{itemize}
+        \item Valor: \CoeficienteFisher
+        \item Significado: \CoeficienteFisherTipo
+    \end{itemize}
+    \item Coeficiente de Pearson: 
+    \begin{itemize}
+        \item Valor: \CoeficientePearson
+        \item Significado: \CoeficientePearsonTipo
+    \end{itemize}
+\end{itemize}
+
+\subsection{Coeficiente de curtosis}
+
+Se obtuvo que la curtosis es de \(\CoeficienteCurtosis\), es decir, es de tipo \CoeficienteCurtosisTipo
+
+\emph{Ambos coeficientes se pueden observar en la figura \ref{fig:hist}}
+\end{document}
