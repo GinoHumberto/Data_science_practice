@@ -3,6 +3,11 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# ~~~~~~~~~~~~~~~~~~~ #
+#       Imports       #
+# ~~~~~~~~~~~~~~~~~~~ #
+import cabina_vivo
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~ #
 #       Carga Dataset       #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~ #
@@ -32,17 +37,10 @@ df_titanic_general = sns.load_dataset('titanic')
 
 # ---- Ver si cabina es importante ---- #
 
-# Creamos el dataset solo con la cabina y si sobrevivieron
-df_titanic_cabina = df_titanic_general[['deck','survived']]
+cantidad_supervivientes_cabina = cabina_vivo.cantidad_sobrevivientes(df_titanic_general[['deck','survived']])
 
-# Creamos una mascara para ver los que tienen informacion en cuanto a df_tenia_cabina:
-filtrado_por_cabina = df_titanic_cabina['deck'].notnull() == True
+sobrevive_cabina, no_sobrevive_cabina = cantidad_supervivientes_cabina
+print(sobrevive_cabina)
 
-# Data frame en caso que 'Si' sobrevivio
-df_tenia_cabina = df_titanic_cabina[filtrado_por_cabina]
-
-
-df_con_cabina_sobrevivio = (df_tenia_cabina['survived'] == 1).sum()
-df_con_cabina_no_sobrevivio = (df_tenia_cabina['survived'] == 0).sum()
-
-print(df_con_cabina_sobrevivio,df_con_cabina_no_sobrevivio) 
+print((df_titanic_general['survived'] == 1).sum())
+print((df_titanic_general['survived'] == 0).sum())
